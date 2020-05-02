@@ -4,16 +4,22 @@ import axios from 'axios';
 class LogIn extends Component{
     
     constructor(){
-        super();        
-        this.state={
-        username:"",
-        password:"",
-        correctUsername:"admin",
-        correctPassword:"pass"
+        super();  
+        if(sessionStorage.getItem('login')) {
+            let data=sessionStorage.getItem('login');
+            this.state=JSON.parse(data);
+        }
+        else{     
+            this.state={
+            username:"",
+            password:"",
+            correctUsername:"admin",
+            correctPassword:"pass"
+            }
         }
     }
-    /*componentDidMount(){
-        axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
+    componentDidMount(){
+        /*axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
         .then(response =>{
             this.setState({
                 correctUsername:response.data.correctUsername,
@@ -23,16 +29,15 @@ class LogIn extends Component{
         .catch(error=>{
         
             console.log('error')
-        })
-        
+        })*/
+        sessionStorage.setItem('login',JSON.stringify(this.state));
 
-    }*/
+    }
     login(){
         if(this.state.username===this.state.correctUsername && 
         this.state.password===this.state.correctPassword){
         localStorage['currentPage']=localStorage.getItem('/');
         this.setState({
-            
         })
         }
         else{
