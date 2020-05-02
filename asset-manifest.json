@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/testing-camm/static/css/main.d1b05096.chunk.css",
+    "main.js": "/testing-camm/static/js/main.7347f3bc.chunk.js",
+    "main.js.map": "/testing-camm/static/js/main.7347f3bc.chunk.js.map",
+    "runtime-main.js": "/testing-camm/static/js/runtime-main.08efd851.js",
+    "runtime-main.js.map": "/testing-camm/static/js/runtime-main.08efd851.js.map",
+    "static/js/2.91e79346.chunk.js": "/testing-camm/static/js/2.91e79346.chunk.js",
+    "static/js/2.91e79346.chunk.js.map": "/testing-camm/static/js/2.91e79346.chunk.js.map",
+    "index.html": "/testing-camm/index.html",
+    "precache-manifest.3f1aff0376ae64c0dbaf9f237baec723.js": "/testing-camm/precache-manifest.3f1aff0376ae64c0dbaf9f237baec723.js",
+    "service-worker.js": "/testing-camm/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/testing-camm/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.91e79346.chunk.js.LICENSE.txt": "/testing-camm/static/js/2.91e79346.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/testing-camm/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.08efd851.js",
+    "static/js/2.91e79346.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.7347f3bc.chunk.js"
+  ]
+}
