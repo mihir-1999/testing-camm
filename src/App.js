@@ -49,13 +49,14 @@ class App extends Component {
         ]
       }
 
-    componentWillMount(){
+    componentDidMount(){
       console.log('AppComponentDidMount');
       this.state.pages.map((page)=>{
         return(
           localStorage.setItem(page.address,page.nextPage)
         )
       })
+      localStorage.setItem('currentPage','/');
     }
   
     

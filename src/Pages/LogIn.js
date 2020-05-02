@@ -12,8 +12,8 @@ class LogIn extends Component{
         correctPassword:"pass"
         }
     }
-    componentDidMount(){
-        /*axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
+    /*componentDidMount(){
+        axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
         .then(response =>{
             this.setState({
                 correctUsername:response.data.correctUsername,
@@ -21,11 +21,12 @@ class LogIn extends Component{
             })
         })
         .catch(error=>{
+        
             console.log('error')
-        })*/
-        localStorage.setItem('currentPage','/');
+        })
+        
 
-    }
+    }*/
     login(){
         if(this.state.username===this.state.correctUsername && 
         this.state.password===this.state.correctPassword){
