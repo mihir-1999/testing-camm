@@ -1,5 +1,4 @@
 {
-  "homepage": "http://mihir-1999.github.io/testing-camm",
   "name": "testing-kyc",
   "version": "0.1.0",
   "private": true,
@@ -24,7 +23,6 @@
     "styled-components": "^5.1.0"
   },
   "scripts": {
-    "json:server": "json-server --watch ./src/Data/db.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
