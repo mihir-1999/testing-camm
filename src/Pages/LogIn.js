@@ -8,12 +8,12 @@ class LogIn extends Component{
         this.state={
         username:"",
         password:"",
-        correctUsername:"",
-        correctPassword:""
+        correctUsername:"admin",
+        correctPassword:"pass"
         }
     }
     componentDidMount(){
-        axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
+        /*axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
         .then(response =>{
             this.setState({
                 correctUsername:response.data.correctUsername,
@@ -22,7 +22,7 @@ class LogIn extends Component{
         })
         .catch(error=>{
             console.log('error')
-        })
+        })*/
         localStorage.setItem('currentPage','/');
 
     }
