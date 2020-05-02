@@ -64,7 +64,7 @@ class GovtID extends Component{
             frontImage : sessionStorage.getItem('frontImage'),
             backImage:sessionStorage.getItem('backImage')
         }
-        axios.post('http://localhost:3000/govtid',JSON.stringify(obj))
+        axios.post('http://www.mocky.io/v2/5eacd69a330000dc64dfe6b1/govtid',JSON.stringify(obj))
         .then(response=>{
             console.log(response);
         })

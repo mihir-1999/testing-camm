@@ -121,7 +121,7 @@ class CustomerDetails extends Component{
         })
     }
     nextPage(){
-        axios.put('http://localhost:3000/details/1',this.state)
+        axios.post('http://www.mocky.io/v2/5eacdd2f330000bf0cdfe6be',this.state)
         .then(response=>{
             console.log(response);
         })

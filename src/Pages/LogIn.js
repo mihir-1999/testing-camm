@@ -13,7 +13,7 @@ class LogIn extends Component{
         }
     }
     componentDidMount(){
-        axios.get('http://localhost:3000/login')
+        axios.get('http://www.mocky.io/v2/5eacdcd33300008524dfe6bd')
         .then(response =>{
             this.setState({
                 correctUsername:response.data.correctUsername,

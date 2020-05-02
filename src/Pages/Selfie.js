@@ -58,7 +58,7 @@ class Selfie extends Component{
         const obj={
             image : sessionStorage.getItem('myImage')
         }
-        axios.post('http://localhost:3000/selfie/1',JSON.stringify(obj))
+        axios.post('http://www.mocky.io/v2/5eacd69a330000dc64dfe6b1/selfie',JSON.stringify(obj))
         .then(response=>{
             console.log(response);
         })
