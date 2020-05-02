@@ -5,17 +5,13 @@ class LogIn extends Component{
     
     constructor(){
         super();  
-        if(sessionStorage.getItem('login')) {
-            let data=sessionStorage.getItem('login');
-            this.state=JSON.parse(data);
-        }
-        else{     
+
             this.state={
             username:"",
             password:"",
             correctUsername:"admin",
             correctPassword:"pass"
-            }
+            
         }
     }
     componentDidMount(){
@@ -30,8 +26,6 @@ class LogIn extends Component{
         
             console.log('error')
         })*/
-        sessionStorage.setItem('login',JSON.stringify(this.state));
-
     }
     login(){
         if(this.state.username===this.state.correctUsername && 
@@ -42,8 +36,6 @@ class LogIn extends Component{
         }
         else{
         alert('Wrong Username or password')
-        this.setState({
-        })
         }
     }
 
