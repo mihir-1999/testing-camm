@@ -193,7 +193,7 @@ class CustomerDetails extends Component{
             <h3>Last Name :{this.state.lastName}</h3>
             <h3>Dob: {this.state.dob}</h3>
             <h3>Gender: {this.state.gender}</h3>
-            <button onClick={this.nextPage.bind(this)}>Si ,correcto</button><button onClick={this.edit.bind(this)}>oh No no no no</button>
+            <button onClick={this.nextPage.bind(this)}>Confirm</button><button onClick={this.edit.bind(this)}>edit</button>
             </div>
             </>)
         }
