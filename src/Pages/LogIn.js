@@ -27,7 +27,7 @@ class LogIn extends Component{
             console.log('error')
         })*/
     }
-    login(){
+    login(e){
         if(this.state.username===this.state.correctUsername && 
         this.state.password===this.state.correctPassword){
         localStorage['currentPage']=localStorage.getItem('/');
@@ -35,6 +35,7 @@ class LogIn extends Component{
         })
         }
         else{
+        e.preventdefault();
         alert('Wrong Username or password')
         }
     }
