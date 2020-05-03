@@ -111,7 +111,7 @@ const theme=createMuiTheme({
 
                 <br/>
                 <form>
-                    <AccountCircle color="primary" fontSize="large" style={{marginTop:'12'}}/> 
+                    <AccountCircle color="primary" fontSize="large" style={{marginTop:'12',marginRight:'12'}}/> 
                     <TextField error={sessionStorage.getItem('userError')==='true'} 
                                helperText={sessionStorage.getItem('userError')==='true'?(this.state.username===""?"Can't leave username empty!":"Wrong credentials detected! try again carefully"):""}
                                color="secondary" variant="outlined" type="text" label="Enter your Username" 
@@ -120,7 +120,7 @@ const theme=createMuiTheme({
                                onChange={this.updateNameData.bind(this)} value={this.state.username}/>       
                 <br/>
                 <br/>
-                    <VpnKeyRoundedIcon color="primary" fontSize="large" style={{marginTop:'12'}}/>   
+                    <VpnKeyRoundedIcon color="primary" fontSize="large" style={{marginTop:'12',marginRight:'12'}}/>   
                 
                     <TextField  error={sessionStorage.getItem('passError')==='true'} 
                                 helperText={sessionStorage.getItem('passError')==='true'?(this.state.password===""?"Can't leave password empty":"Wrong credentials detected! try again carefully"):""}
@@ -141,7 +141,7 @@ const theme=createMuiTheme({
                 
                 <br/>
                 <br/>        
-                <Button  size="large" style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                <Button type="submit" size="large" style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
                 </form>
             </ThemeProvider>
             </div>
