@@ -64,6 +64,7 @@ const theme=createMuiTheme({
         })
         }
         else{
+            e.preventDefault();
             if(this.state.username==="" || this.state.user!==this.state.correctUsername)
             sessionStorage['userError']=true;
             if(this.state.password==="" || this.state.user!==this.state.correctPassword)
@@ -112,7 +113,8 @@ const theme=createMuiTheme({
                 <br/>
                 <form>
                     <AccountCircle color="primary" fontSize="large" style={{marginTop:'12',marginRight:'12'}}/> 
-                    <TextField error={sessionStorage.getItem('userError')==='true'} 
+                    <TextField defaultValue={this.state.username}
+                                error={sessionStorage.getItem('userError')==='true'} 
                                helperText={sessionStorage.getItem('userError')==='true'?(this.state.username===""?"Can't leave username empty!":"Wrong credentials detected! try again carefully"):""}
                                color="secondary" variant="outlined" type="text" label="Enter your Username" 
                                style ={{width: '75%'}}
@@ -122,7 +124,9 @@ const theme=createMuiTheme({
                 <br/>
                     <VpnKeyRoundedIcon color="primary" fontSize="large" style={{marginTop:'12',marginRight:'12'}}/>   
                 
-                    <TextField  error={sessionStorage.getItem('passError')==='true'} 
+                    <TextField 
+                                defaultValue={this.state.username}
+                                 error={sessionStorage.getItem('passError')==='true'} 
                                 helperText={sessionStorage.getItem('passError')==='true'?(this.state.password===""?"Can't leave password empty":"Wrong credentials detected! try again carefully"):""}
                                 color="secondary" variant="outlined" 
                                 type={this.state.isPassMasked?"password":"text"} label="Enter your Password" 
