@@ -91,7 +91,7 @@ const theme=createMuiTheme({
                 <div class="App">
                 <ThemeProvider theme={theme}>  
 
-                <img src={zestmoney} alt="Logo" height="44%" width="44%"/>
+                <img src={zestmoney} alt="Logo" height="64%"/>
                 <h3>Welcome to login enter your credentials</h3>
 
                 <br/>
@@ -115,7 +115,7 @@ const theme=createMuiTheme({
                 
                 <br/>
                 <br/>        
-                <Button  style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                <Button  size="large" style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
             </ThemeProvider>
             </div>
         );}
