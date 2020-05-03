@@ -114,7 +114,7 @@ const theme=createMuiTheme({
                 
                 <br/>
                 <br/>        
-                <Button  style ={{width: '81%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                <Button  style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
             </ThemeProvider>
             </div>
         );}
