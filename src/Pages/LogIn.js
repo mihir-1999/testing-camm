@@ -91,8 +91,9 @@ const theme=createMuiTheme({
                 <div class="App">
                 <ThemeProvider theme={theme}>  
 
-                <h3>Welcome to login enter your credentials</h3>
                 <img src={zestmoney} alt="Logo" height="44%" width="44%"/>
+                <h3>Welcome to login enter your credentials</h3>
+
                 <br/>
                     <AccountCircle color="primary" fontSize="large" style={{marginTop:'12'}}/> 
                     <TextField error={sessionStorage.getItem('userError')==='true'} 
