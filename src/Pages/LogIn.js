@@ -27,8 +27,8 @@ const theme=createMuiTheme({
             this.state={
             username:"",
             password:"",
-            correctUsername:"admin",
-            correctPassword:"pass",
+            correctUsername:"M",
+            correctPassword:"M",
         }
     }
     componentDidMount(){
