@@ -54,6 +54,7 @@ const theme=createMuiTheme({
         })*/
         sessionStorage.setItem('userError',false);
         sessionStorage.setItem('passError',false);
+        localStorage.getItem('currentPage')?localStorage.getItem('currentPage'):localStorage.setItem('currentPage','/');
 
     }
     login(e){

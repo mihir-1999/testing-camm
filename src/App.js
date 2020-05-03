@@ -56,7 +56,6 @@ class App extends Component {
           localStorage.setItem(page.address,page.nextPage)
         )
       })
-      localStorage.setItem('currentPage','/');
     }
   
     
