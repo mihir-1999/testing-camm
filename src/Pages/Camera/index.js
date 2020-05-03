@@ -37,16 +37,7 @@ export default function Camera({ onCapture, onClear }) {
         container.width,
         container.height
     );
-    var elem=document.getElementById("root");
-    if(elem.requestFullscreen){
-        elem.requestFullscreen();
-    }else if(elem.msRequestFullscreen){
-        elem.msRequestFullscreen();
-    }else if(elem.mozRequestFullscreen){
-        elem.mozRequestFullscreen();
-    }else if(elem.webkitRequestFullscreen){
-        elem.webkitRequestFullscreen();
-    }
+    
     if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
         videoRef.current.srcObject = mediaStream;
     }
@@ -146,7 +137,7 @@ export default function Camera({ onCapture, onClear }) {
         return (<Redirect to='/selfie'/>)
     }
     return (
-        <Measure bounds onResize={handleResize}>
+        <Measure bounds onResize={handleResize} id="mainScreen">
             {({ measureRef }) => (
                 <Wrapper>
                     <Container

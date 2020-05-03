@@ -17,7 +17,7 @@ class CustomerDetails extends Component{
                
                 firstName:"",
                 middleName:"",
-                lastName:" ",
+                lastName:"",
                 dob:"",
                 gender:"",
                 isFilled:false,
@@ -102,7 +102,7 @@ class CustomerDetails extends Component{
         
         if(this.state.firstName==="")
         e.preventDefault();
-        else if(this.setState.lastName==="")
+        else if(this.state.lastName==="")
         e.preventDefault();
         else if(this.state.gender==="")
         e.preventDefault();

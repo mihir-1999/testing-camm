@@ -25,7 +25,7 @@ class Selfie extends Component{
         sessionStorage.setItem('myImage','');
     }
     goFull(){
-        var elem=document.getElementById("root");
+        var elem=document.getElementById("camera");
         if(elem.requestFullscreen){
             elem.requestFullscreen();
         }else if(elem.msRequestFullscreen){

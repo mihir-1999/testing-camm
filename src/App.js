@@ -5,8 +5,8 @@ import CustomerDetails from './Pages/CustomerDetails';
 import Selfie from './Pages/Selfie';
 import GovtID from  './Pages/GovtID';
 import Success from './Pages/Success';
-
 import './App.css';
+
 
 class App extends Component {
     constructor(){
@@ -62,17 +62,21 @@ class App extends Component {
     
     
     render(){
-      console.log('AppRender');
+      
       return(
+        <>
+        <div id="camera" className="App">
         <Router>
         {
           this.state.pages.map((page)=>{
             return(
               <Route exact strict path={page.address} component={page.name} key={page.id}></Route>
-            )
-          })
-        }
+              )
+            })
+          }
         </Router>
+        </div>
+        </>
       );
     }
 
