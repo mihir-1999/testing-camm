@@ -11,6 +11,9 @@ import Container from  '@material-ui/core/Container';
 import {createMuiTheme,ThemeProvider} from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import lightBlue from '@material-ui/core/colors/lightBlue';
+import { InputAdornment, withStyles } from '@material-ui/core';
+import { RemoveRedEye } from '@material-ui/icons';
+import PropTypes from 'prop-types';
 
 const theme=createMuiTheme({
     palette:{
@@ -19,16 +22,22 @@ const theme=createMuiTheme({
     },
     spacing: 8
   });
+  const styles = theme => ({
+    eye: {
+      cursor: 'pointer',
+    },
+  });
   class LogIn extends Component{
     
-    constructor(){
-        super();  
+    constructor(props){
+        super(props);  
 
             this.state={
             username:"",
             password:"",
             correctUsername:"M",
             correctPassword:"M",
+            isPassMasked:true
         }
     }
     componentDidMount(){
@@ -77,7 +86,13 @@ const theme=createMuiTheme({
         })
 
     }
+    togglePasswordMask(){
+        const pm=!this.state.isPassMasked;
+        this.setState({
+            isPassMasked:pm
+        })
 
+    }
 
     render(){
             if(localStorage.getItem('currentPage')!=='/'){
@@ -86,15 +101,16 @@ const theme=createMuiTheme({
                     <Redirect to={localStorage.getItem('currentPage')}/>
                 );
             }
-
+            const { classes } = this.props;
             return(
                 <div class="App">
                 <ThemeProvider theme={theme}>  
 
-                <img src={zestmoney} alt="Logo" height="64%"/>
+                <img src={zestmoney} alt="Logo" width="80%"/>
                 <h3>Welcome to login enter your credentials</h3>
 
                 <br/>
+                <form>
                     <AccountCircle color="primary" fontSize="large" style={{marginTop:'12'}}/> 
                     <TextField error={sessionStorage.getItem('userError')==='true'} 
                                helperText={sessionStorage.getItem('userError')==='true'?(this.state.username===""?"Can't leave username empty!":"Wrong credentials detected! try again carefully"):""}
@@ -108,7 +124,17 @@ const theme=createMuiTheme({
                 
                     <TextField  error={sessionStorage.getItem('passError')==='true'} 
                                 helperText={sessionStorage.getItem('passError')==='true'?(this.state.password===""?"Can't leave password empty":"Wrong credentials detected! try again carefully"):""}
-                                color="secondary" variant="outlined" type="password" label="Enter your Password" 
+                                color="secondary" variant="outlined" 
+                                type={this.state.isPassMasked?"password":"text"} label="Enter your Password" 
+                                InputProps={{
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <RemoveRedEye
+                                          onClick={this.togglePasswordMask.bind(this)}
+                                        />
+                                      </InputAdornment>
+                                    ),
+                                  }}
                                 style ={{width: '75%'}}
                                 inputStyle ={{width: '75%%'}}
                                 onChange={this.updatePassData.bind(this)} value={this.state.password}/>
@@ -116,8 +142,14 @@ const theme=createMuiTheme({
                 <br/>
                 <br/>        
                 <Button  size="large" style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                </form>
             </ThemeProvider>
             </div>
         );}
 }
+LogIn.propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+  
+  LogIn = withStyles(styles)(LogIn);
 export default LogIn;

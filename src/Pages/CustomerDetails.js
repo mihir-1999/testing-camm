@@ -74,7 +74,7 @@ class CustomerDetails extends Component{
                     
                     if(index<n){
                         if(str[index]>='A' && str[index]<='Z'){
-                            let newStr=str.slice(0,index-1)+
+                            let newStr=str.slice(0,index)+
                             str[index].toLowerCase()+str.slice(index+1,n-1);
                             this.setState({
                                 [e.target.name]:newStr
