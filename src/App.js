@@ -64,8 +64,6 @@ class App extends Component {
     render(){
       
       return(
-        <>
-        <div id="camera" className="App">
         <Router>
         {
           this.state.pages.map((page)=>{
@@ -75,8 +73,6 @@ class App extends Component {
             })
           }
         </Router>
-        </div>
-        </>
       );
     }
 

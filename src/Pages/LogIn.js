@@ -88,10 +88,11 @@ const theme=createMuiTheme({
             }
 
             return(
+                <div class="App">
                 <ThemeProvider theme={theme}>  
 
                 <h3>Welcome to login enter your credentials</h3>
-                <img src={zestmoney} alt="Logo" height="20%" width="20%"/>
+                <img src={zestmoney} alt="Logo" height="44%" width="44%"/>
                 <br/>
                     <AccountCircle color="primary" fontSize="large" style={{marginTop:'12'}}/> 
                     <TextField error={sessionStorage.getItem('userError')==='true'} 
@@ -113,8 +114,9 @@ const theme=createMuiTheme({
                 
                 <br/>
                 <br/>        
-                <Button  style ={{width: '75%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                <Button  style ={{width: '81%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
             </ThemeProvider>
+            </div>
         );}
 }
 export default LogIn;
