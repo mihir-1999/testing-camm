@@ -103,7 +103,7 @@ const theme=createMuiTheme({
             }
             const { classes } = this.props;
             return(
-                <div class="App">
+                <div className="App">
                 <ThemeProvider theme={theme}>  
 
                 <img src={zestmoney} alt="Logo" width="80%"/>
@@ -116,7 +116,7 @@ const theme=createMuiTheme({
                                helperText={sessionStorage.getItem('userError')==='true'?(this.state.username===""?"Can't leave username empty!":"Wrong credentials detected! try again carefully"):""}
                                color="secondary" variant="outlined" type="text" label="Enter your Username" 
                                style ={{width: '75%'}}
-                               inputStyle ={{width: '75%%'}}
+                               
                                onChange={this.updateNameData.bind(this)} value={this.state.username}/>       
                 <br/>
                 <br/>
@@ -136,7 +136,7 @@ const theme=createMuiTheme({
                                     ),
                                   }}
                                 style ={{width: '75%'}}
-                                inputStyle ={{width: '75%%'}}
+                                
                                 onChange={this.updatePassData.bind(this)} value={this.state.password}/>
                 
                 <br/>
