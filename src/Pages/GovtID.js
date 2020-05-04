@@ -3,6 +3,23 @@ import axios from 'axios';
 import Camera1 from './Camera/index1';
 import Camera2 from './Camera/index2';
 import {Redirect} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import {createMuiTheme,ThemeProvider} from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography';
+import '../App.css';
+import id from './id.jpg';
+
+const theme=createMuiTheme({
+    palette:{
+      primary:green,
+      secondary: lightBlue
+    },
+    spacing: 8
+  });
+
 
 class GovtID extends Component{
     constructor(){
@@ -57,7 +74,6 @@ class GovtID extends Component{
     nextPage(){
         sessionStorage.removeItem('isCanvasEmpty');
         sessionStorage.removeItem('isVideoPlaying');
-        this.goNormal();
         localStorage['currentPage']=localStorage.getItem('/govtid');
         const obj={
             idType: this.state.idType,
@@ -82,14 +98,9 @@ class GovtID extends Component{
 
     }
     openCamera(e){
-        if(this.state.idType===""){
-        e.preventDefault();}
-        else{
-            this.goFull();
             this.setState({
             isBkCameraOpen:true,
             })
-        }
     }
     clickImage1(blob){
         this.setState({
@@ -108,14 +119,12 @@ class GovtID extends Component{
         })
     }
     edit1(){
-        this.goFull();
         sessionStorage['frontImage']='';
         this.setState({
         isBkCameraOpen:true,
         })
     }
     edit2(){
-        this.goFull();
         sessionStorage['backImage']='';
         this.setState({
         isBkCameraOpen:true,
@@ -134,38 +143,74 @@ class GovtID extends Component{
         else if(!this.state.isBkCameraOpen){
         sessionStorage['govtId']=JSON.stringify(this.state);
         return(
-        <>
-        <button onClick={this.logout.bind(this)}>Logout</button>
-        <h1>This is GovtID</h1>
-            <form onSubmit={this.openCamera.bind(this)}>
-            <label>Select idType:</label>
+        <div className="details">
+            <button onClick={this.logout.bind(this)}>Logout</button>
+            <ThemeProvider theme={theme}>
+            <section className="section">
+            <div class="inline">
+            <img src={id} height="50%"/>
             <br/>
-            <input type="button" value="aadhaar" name="idType" onClick={this.setId.bind(this)} />
-            
-            <input type="button"  value="pan" name="idType" onClick={this.setId.bind(this)} />
-            
-            <input type="button" value="driver-license" name="idType" onClick={this.setId.bind(this)} /> 
-            <br/>
-            <input type="submit" value="Open BackCamera"/>
-            </form>
-        </>
+            </div>
+            <div class="inline1">
+            <Typography style={{height:"6vh"}} variant="h6">Verify your identity</Typography>
+            <Typography style={{height:"4vh"}}variant="caption">Please upload a government id for KYC verification</Typography>
+            </div>
+            </section>
+            <Box marginX={2} marginTop={1}  paddingY={2} paddingX={2} boxShadow={3} height="90%">
+
+            <Typography variant="h5">Select a Government ID</Typography>
+                    <br/>    
+                    <div className="buttons">
+                    <input className={this.state.idType==="Aadhaar Card"? "selected":"notselected"} type="button"  onClick={this.setId.bind(this)} value="Aadhaar Card"/>
+                    <input className={this.state.idType==="Voter ID"? "selected":"notselected"} type="button" onClick={this.setId.bind(this)} value="Voter ID"/>
+                    <input className={this.state.idType==="PAN Card"? "selected":"notselected"} type="button" onClick={this.setId.bind(this)} value="PAN Card"/>
+                    <input className={this.state.idType==="Driving License"? "selected":"notselected"} type="button"  onClick={this.setId.bind(this)} value="Driving License"/>
+                    </div>
+                    
+                    {this.state.idType &&(
+                    <>
+                    <Typography variant="h6">Front of and back of {this.state.idType}</Typography>
+                    <Typography variant="caption">Your name,photo and address should be clearly visible</Typography>
+                    <br/>
+                    <img className="image" src={this.state.idType} width="45%"/>
+                    </>
+                    )
+                    }
+                <Button disabled={this.state.idType===""} centerRipple size="large" style ={{width: '100%'}} color="primary" variant="contained"  onClick={this.openCamera.bind(this)}>Click photo of {this.state.idType}</Button>
+            </Box>
+            </ThemeProvider>
+            </div>
         );
         }
         else if(sessionStorage.getItem('frontImage')!=='' && sessionStorage.getItem('backImage')!==''){
                 sessionStorage['govtId']=JSON.stringify(this.state);
                 return(
-                <>
-                <div>
-                <button><h2>Images Captured!! Click submit to go to next step or edit to take id photos again</h2>
-                </button>
-                <br/>
-                <img src={"data:image/png;base64,"+sessionStorage.getItem('frontImage')} width="45%"/>
-                <img src={"data:image/png;base64,"+sessionStorage.getItem('backImage')} width="45%"/>
-                </div>
-                <button onClick={this.nextPage.bind(this)}>Submit</button>
-                <button onClick={this.edit1.bind(this)}>Edit first image</button>
-                <button onClick={this.edit2.bind(this)}>Edit second image</button>
-                </>
+
+            <div className="details">
+            <button onClick={this.logout.bind(this)}>Logout</button>
+            <ThemeProvider theme={theme}>
+            <section className="section">
+            <div class="inline">
+            <img src="id" width="50%"/>
+            <br/>
+            </div>
+            <div class="inline1">
+            <Typography style={{height:"6vh"}} variant="h6">Verify your identity</Typography>
+            <Typography style={{height:"4vh"}}variant="caption">Please upload a government id for KYC verification</Typography>
+            </div>
+            </section>
+            <Box marginX={2} marginTop={1}  paddingY={2} paddingX={2} boxShadow={3} height="90%">
+                <Typography variant="h5">Your Government ID</Typography>
+                 <img src={"data:image/png;base64,"+sessionStorage.getItem('frontImage')} className="image" width="45%"/>
+                <img src={"data:image/png;base64,"+sessionStorage.getItem('backImage')} className="image" width="45%"/>
+               
+                <button className="selected" onClick={this.edit1.bind(this)}>Edit front image</button>
+                <button className="selected" onClick={this.edit2.bind(this)}>Edit back image</button>
+                
+                <Button centerRipple size="large" style ={{width: '100%'}} color="primary" variant="contained"  onClick={this.nextPage.bind(this)}>Submit</Button>
+            </Box>
+            </ThemeProvider>
+            </div>
             )}
 
             else if(sessionStorage.getItem('frontImage')===''){

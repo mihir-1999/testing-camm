@@ -10,7 +10,9 @@ import {
     Wrapper,
     Container,
     Flash,
-    Overlay
+    Overlay,
+    Overlay1,
+    Button
 } from './styles';
 const CAPTURE_OPTIONS = {
     audio: false,
@@ -27,7 +29,6 @@ export default function Camera({ onCapture, onClear }) {
     const [isVideoPlaying, setIsVideoPlaying] = useState(sessionStorage.getItem('isVideoPlaying'));
     const [isCanvasEmpty, setIsCanvasEmpty] = useState(sessionStorage.getItem('isCanvasEmpty'));
     const [isFlashing, setIsFlashing] = useState(false);
-    // const [isFullscreen, setIsFullscreen] = useFullscreenStatus(videoRef);
 
     const mediaStream = useUserMedia(CAPTURE_OPTIONS);
     const [aspectRatio, calculateRatio] = useCardRatio(1);
@@ -83,6 +84,13 @@ export default function Camera({ onCapture, onClear }) {
         setIsVideoPlaying(false);
         sessionStorage['isVideoPlaying']=false;
         setIsFlashing(true);
+        const myImage=document.getElementById("selfieImage");
+        const imageData=getBase64Image(myImage);
+        sessionStorage['myImage']=imageData;
+        sessionStorage['isVideoPlaying']=true;
+        setIsVideoPlaying(true);
+        sessionStorage['isCanvasEmpty']=false;
+        setIsCanvasEmpty(false);
     }
 
     function handleClear() {
@@ -105,31 +113,16 @@ export default function Camera({ onCapture, onClear }) {
         canvas.height = container.height;
     
         var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
+        ctx.drawImage(img, 0, 0,
+            container.width,
+            container.height,
+            );
     
         var dataURL = canvas.toDataURL("image/png");
     
         return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     }
-    function saveImage(){
-        const myImage=document.getElementById("selfieImage");
-        const imageData=getBase64Image(myImage);
-        sessionStorage['myImage']=imageData;
-        sessionStorage['isVideoPlaying']=true;
-        setIsVideoPlaying(true);
-        sessionStorage['isCanvasEmpty']=false;
-        setIsCanvasEmpty(false);
-        
-    }
-    // const fullscreenModal = videoRef;
-
-    // function openContentFullscreen() {
-    //     const elem = fullscreenModal.current;
-    //     if (elem.requestFullscreen) {
-    //         elem.requestFullscreen();
-    //     }
-    // }
-
+    
     if (!mediaStream) {
         return null;
     }
@@ -164,7 +157,8 @@ export default function Camera({ onCapture, onClear }) {
                                 left: `-${offsets.x}px`,
                             }}
                         />
-                        <Overlay hidden={!isVideoPlaying} />
+                        <Overlay hidden={!isVideoPlaying}>
+                        </Overlay>
                         <Canvas
                             id="selfieImage"
                             ref={canvasRef}
@@ -175,24 +169,11 @@ export default function Camera({ onCapture, onClear }) {
                             flash={isFlashing}
                             onAnimationEnd={() => setIsFlashing(false)}
                         />
+                        <Overlay1>
+                        <Button onClick={handleCapture}></Button>
+                        </Overlay1>
                     </Container>
-
-                        <div>
-                            <button
-                                onClick={
-                                    isCanvasEmpty ? handleCapture : handleClear
-                                }
-                            >
-                                {isCanvasEmpty
-                                    ? 'Take a picture'
-                                    : 'Take another picture'}
-                            </button>
-                            {!isCanvasEmpty &&(
-                                <button onClick={saveImage}>Looks Good</button>
-                            )
-                            }
-                        </div>
-        
+                    <h3>Keep your head inside the oval</h3>
                 </Wrapper>
             )}
         </Measure>

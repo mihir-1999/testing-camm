@@ -1,11 +1,30 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import Camera from './Camera/index'
+import Camera from './Camera/index';
+import Button from '@material-ui/core/Button';
+import {createMuiTheme,ThemeProvider} from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography';
+import selfie from './selfie.jpg';
+import selfieman from './selfieman.jpg';
+import filling from './filling.png';
+
+const theme=createMuiTheme({
+    palette:{
+      primary:green,
+      secondary: lightBlue
+    },
+    spacing: 8
+  });
+
 class Selfie extends Component{
     constructor(){
         super();
         console.log('selfieConstructor')
+        const obj=JSON.parse(sessionStorage.getItem('details'));
         if(sessionStorage.getItem('selfie'))
         {
             let data=sessionStorage.getItem('selfie');
@@ -13,6 +32,7 @@ class Selfie extends Component{
         }
         else{
         this.state={
+            
             isFrCameraOpen:false,
             isFilled:false,
         }
@@ -51,7 +71,6 @@ class Selfie extends Component{
     }
     
     nextPage(){
-        this.goNormal();
         sessionStorage.removeItem('isCanvasEmpty');
         sessionStorage.removeItem('isVideoPlaying');
         localStorage['currentPage']=localStorage.getItem('/selfie');
@@ -70,7 +89,6 @@ class Selfie extends Component{
         })
     }
     openCamera(){
-            this.goFull();
             this.setState({
             isFrCameraOpen:true,
         })
@@ -87,9 +105,6 @@ class Selfie extends Component{
         })
     }
     edit(){
-            this.goFull();
-
-        sessionStorage.removeItem('myImage');
         this.setState({
             isFrCameraOpen:true
         })
@@ -104,29 +119,70 @@ class Selfie extends Component{
         if(localStorage.getItem('currentPage')!=='/selfie')
         return (<Redirect to={localStorage.getItem('currentPage')}/>)
         
-        if(this.state.isFrCameraOpen===false && sessionStorage.getItem('myImage')===null){
+        if(!this.state.isFrCameraOpen){
         sessionStorage['selfie']=JSON.stringify(this.state);
         return(
         <>
          <button onClick={this.logout.bind(this)}>Logout</button>
-        <h1>This is Selfie</h1>
-        <div>
-        <button onClick={this.openCamera.bind(this)}>Take Selfie</button>
-        </div>
+         <div className="details">
+            <ThemeProvider theme={theme}>
+            <section className="section">
+            <div class="inline">
+            <img src={filling} height="100%"/>
+            <br/>
+            </div>
+            <div class="inline1">
+            <Typography style={{height:"6vh"}} variant="h6">Verify your identity</Typography>
+            <Typography style={{height:"4vh"}}variant="caption">Please upload a selfie for KYC verification</Typography>
+            </div>
+            </section>
+            <Box marginX={2} marginTop={1}  paddingY={2} paddingX={2} boxShadow={3} height="90%">
+                
+                <Typography variant="h5">Take a selfie</Typography>
+                <br/>
+                <Typography variant="caption">Make sure you whole face is clearly visible without any glare or blur</Typography>
+                <br/>
+                <img className="image" src={this.state.gender==="Female"?selfie:selfieman} width="45%"/>
+                
+                <Button centerRipple size="large" style ={{width: '100%'}} color="primary" variant="contained"  onClick={this.openCamera.bind(this)}>Take Selfie</Button>
+            </Box>
+            </ThemeProvider>
+            </div>
         </>
         );}
         else if(sessionStorage.getItem('myImage')){
+            sessionStorage['selfie']=JSON.stringify(this.state);
          return(
-         <>
-         <div>
-         <button><h2>Image Captured!! Click submit to go to next step or edit to take new Selfie</h2>
-         </button>
-         <br/>
-         <img src={"data:image/png;base64,"+sessionStorage.getItem('myImage')}/>
-         </div>
-         <button onClick={this.nextPage.bind(this)}>Submit</button>
-         <button onClick={this.edit.bind(this)}>Edit</button>
-         </>
+             <>
+            <button onClick={this.logout.bind(this)}>Logout</button>
+            <div className="details">
+               <ThemeProvider theme={theme}>
+               <section className="section">
+               <div class="inline">
+               <img src={filling} height="100%"/>
+               <br/>
+               </div>
+               <div class="inline1">
+               <Typography style={{height:"6vh"}} variant="h6">Verify your identity</Typography>
+               <Typography style={{height:"4vh"}}variant="caption">Please upload a selfie for KYC verification</Typography>
+               </div>
+               </section>
+               <Box marginX={2} marginTop={1}  paddingY={2} paddingX={2} boxShadow={3} height="90%">
+                   
+                   <Typography variant="h5">Selfie taken</Typography>
+                   <Typography variant="caption">Make sure you whole face is clearly visible without any glare or blur</Typography>
+                   <br/><br/>
+                   <img src={"data:image/png;base64,"+sessionStorage.getItem('myImage')} width="55%"/>
+                   <br/>              
+                   <br/>
+                   <Button centerRipple style ={{width: '47%'}} color="primary" variant="contained"  onClick={this.nextPage.bind(this)}>Looks Good</Button>
+                  <span> </span>
+                   <Button centerRipple  style ={{width: '47%'}} color="primary" variant="contained"  onClick={this.edit.bind(this)}>Take another</Button>
+               
+               </Box>
+               </ThemeProvider>
+               </div>
+               </>
          )}
         else{
             sessionStorage['selfie']=JSON.stringify(this.state);

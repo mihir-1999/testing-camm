@@ -45,25 +45,36 @@ export const Video = styled.video`
 `;
 export const Overlay1 = styled.div`
     position: absolute;
-    top: 10%;
-    right: 20px;
-    bottom: 20px;
-    left: 10px;
-    box-shadow: 0px 0px 20px 56px rgba(0, 0, 0, 0.4);
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-`;
+    width:100%;
+    bottom: 5%;
+    border: none;
+    text-align:center;
 
+`;
+export const Overlay2=styled.div`
+    position: absolute;
+    top: 13%;
+    right: 20%;
+    left: 20%;
+    bottom: 33%;
+    border:2px dashed white;
+    
+`;
+export const Button=styled.button`
+    border:none;
+    width:74px;
+    height:74px;
+    border-radius:37px;
+    background-color:red;
+    border:2px solid white;
+`;
 export const Overlay = styled.div`
     position: absolute;
     top: 13%;
     right: 20%;
     left: 20%;
     bottom: 33%;
-
-    ${'' /* z-index: 30; */}
-    box-shadow: 0px 0px 20px 800px  rgba(0, 0, 0, 0.4);
-    border: 0.4px solid #ffffff;
+    border:2px dashed white;
     border-radius: 800px;
 `;
 

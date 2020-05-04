@@ -1,8 +1,104 @@
 .App {
   text-align: center;
-  margin-top: 15%;
+  margin-top: 3%;
 }
+.submit{
+    border-radius: 10px;
+    margin-top: 24px;
+    width:90%;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50; /* Green */
+    margin-left: 12px;
+    margin-bottom: 12px;    
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    height: 52px;
+    outline: none;
+    background-position: center;
+    transition: background .6s;
+}
+.details{
+  min-height: 95vh;
+  
+}
+.image{
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.19);
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border:2px solid  #cfcfcf;
+  margin-left: 27%;
+}
+.clearBoth{
+  clear: both;
+}
+.section{
+  align-content: center;
+  box-sizing: border-box;
+  background-color: #cbcbd8;
+  margin-left: 1px;
+  margin-right: 1px;
+  box-shadow: 0 1px 12px 0 rgba(0,0,0,0.2), 0 1px 12px 0 rgba(0,0,0,0.19);
+}
+.inline{
+  margin-top: none;
+  box-sizing: border-box;
+  display: inline-block;
+  width:15%;
+  padding-top: 5px;
+  height:10vh;
+}
+.inline1{
+  background-color: #cbcbd8;
+  box-sizing: border-box;
+  padding-left: 5px;
+  display: inline-block;
+  border: none;
+  
+  width: 75%;
+  height:10vh;
 
+}
+.selected{ 
+  border-radius: 26px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50; /* Green */
+    margin-left: 5px;
+    margin-bottom: 8px;    
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    height: 52px;
+    outline: none;
+    background-position: center;
+    transition: background .6s;
+    width:30%;
+}
+.notselected{
+    outline: none;
+    border-radius:26px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: white;
+    border: 1px solid #cfcfcf;
+    margin-left: 5px;
+    margin-bottom: 8px;
+    height: 52px;
+    background-position: center;
+    transition: background .6s;
+    width: 30%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

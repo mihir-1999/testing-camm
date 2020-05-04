@@ -14,6 +14,8 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import { InputAdornment, withStyles } from '@material-ui/core';
 import { RemoveRedEye } from '@material-ui/icons';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box'
 
 const theme=createMuiTheme({
     palette:{
@@ -31,6 +33,10 @@ const theme=createMuiTheme({
     
     constructor(props){
         super(props);  
+        if(!sessionStorage.getItem('userError')){
+        sessionStorage['userError']=false;
+        sessionStorage['passError']=false;
+        }
 
             this.state={
             username:"",
@@ -66,10 +72,14 @@ const theme=createMuiTheme({
         }
         else{
             e.preventDefault();
-            if(this.state.username==="" || this.state.user!==this.state.correctUsername)
-            sessionStorage['userError']=true;
-            if(this.state.password==="" || this.state.user!==this.state.correctPassword)
-            sessionStorage['passError']=true;
+            if(this.state.username===""&& this.state.password===""){
+            sessionStorage['userError']=true; sessionStorage['passError']=true;}
+            else if(this.state.username===""){
+            sessionStorage['userError']=true;}
+            else if(this.state.password===""){
+            sessionStorage['passError']=true;}
+            else{            
+            sessionStorage['passError']=true;sessionStorage['userError']=true;}
             this.setState({})
         }
     }
@@ -107,23 +117,28 @@ const theme=createMuiTheme({
             return(
                 <div className="App">
                 <ThemeProvider theme={theme}>  
+                
+                <img src={zestmoney} alt="Logo" width="50%"/>
+                <br/>
+                <br/>
 
-                <img src={zestmoney} alt="Logo" width="80%"/>
-                <h3>Welcome to login enter your credentials</h3>
-
+                <Typography variant="h5">SignIn</Typography>
+                <Typography >ZestMoney one stop KYC solution</Typography>
+                <br/>
                 <br/>
                 <form>
-                    <AccountCircle color="primary" fontSize="large" style={{marginTop:'12',marginRight:'12'}}/> 
+                    <AccountCircle color="primary" fontSize="large" style={{marginTop:'12',marginRight:'6'}}/> 
                     <TextField defaultValue={this.state.username}
+                                autoFocus={true}
                                 error={sessionStorage.getItem('userError')==='true'} 
                                helperText={sessionStorage.getItem('userError')==='true'?(this.state.username===""?"Can't leave username empty!":"Wrong credentials detected! try again carefully"):""}
                                color="secondary" variant="outlined" type="text" label="Enter your Username" 
-                               style ={{width: '75%'}}
+                               style ={{width: '85%'}}
                                
                                onChange={this.updateNameData.bind(this)} value={this.state.username}/>       
                 <br/>
                 <br/>
-                    <VpnKeyRoundedIcon color="primary" fontSize="large" style={{marginTop:'12',marginRight:'12'}}/>   
+                    <VpnKeyRoundedIcon color="primary" fontSize="large" style={{marginTop:'12',marginRight:'6'}}/>   
                 
                     <TextField 
                                 defaultValue={this.state.username}
@@ -140,13 +155,13 @@ const theme=createMuiTheme({
                                       </InputAdornment>
                                     ),
                                   }}
-                                style ={{width: '75%'}}
+                                style ={{width: '85%'}}
                                 
                                 onChange={this.updatePassData.bind(this)} value={this.state.password}/>
                 
                 <br/>
                 <br/>        
-                <Button type="submit" size="large" style ={{width: '85%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                <Button type="submit" size="large" style ={{width: '95%'}} color="primary" variant="contained" onClick={this.login.bind(this)}>Login</Button>
                 </form>
             </ThemeProvider>
             </div>

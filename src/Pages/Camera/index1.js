@@ -10,7 +10,9 @@ import {
     Wrapper,
     Container,
     Flash,
-    Overlay1
+    Overlay1,
+    Overlay2,
+    Button
 } from './styles';
 const CAPTURE_OPTIONS = {
     audio: false,
@@ -83,6 +85,13 @@ export default function Camera1({ onCapture, onClear }) {
         setIsVideoPlaying(false);
         sessionStorage['isVideoPlaying']=false;
         setIsFlashing(true);
+        const myImage=document.getElementById("frontImage");
+        const imageData=getBase64Image(myImage);
+        sessionStorage['frontImage']=imageData;
+        sessionStorage['isVideoPlaying']=true;
+        setIsVideoPlaying(true);
+        sessionStorage['isCanvasEmpty']=false;
+        setIsCanvasEmpty(false);
     }
 
     function handleClear() {
@@ -111,24 +120,6 @@ export default function Camera1({ onCapture, onClear }) {
     
         return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     }
-    function saveImage(){
-        const myImage=document.getElementById("frontImage");
-        const imageData=getBase64Image(myImage);
-        sessionStorage['frontImage']=imageData;
-        sessionStorage['isVideoPlaying']=true;
-        setIsVideoPlaying(true);
-        sessionStorage['isCanvasEmpty']=false;
-        setIsCanvasEmpty(false);
-        
-    }
-    // const fullscreenModal = videoRef;
-
-    // function openContentFullscreen() {
-    //     const elem = fullscreenModal.current;
-    //     if (elem.requestFullscreen) {
-    //         elem.requestFullscreen();
-    //     }
-    // }
 
     if (!mediaStream) {
         return null;
@@ -164,7 +155,7 @@ export default function Camera1({ onCapture, onClear }) {
                                 left: `-${offsets.x}px`,
                             }}
                         />
-                        <Overlay1 hidden={!isVideoPlaying} />
+                        <Overlay2 hidden={!isVideoPlaying} />
                         <Canvas
                             id="frontImage"
                             ref={canvasRef}
@@ -175,24 +166,11 @@ export default function Camera1({ onCapture, onClear }) {
                             flash={isFlashing}
                             onAnimationEnd={() => setIsFlashing(false)}
                         />
+                        <Overlay1>
+                            <Button onClick={handleCapture}></Button>
+                        </Overlay1>
                     </Container>
-
-                        <div>
-                            <button
-                                onClick={
-                                    isCanvasEmpty ? handleCapture : handleClear
-                                }
-                            >
-                                {isCanvasEmpty
-                                    ? 'Take picture of front side'
-                                    : 'Take picture of this side again'}
-                            </button>
-                            {!isCanvasEmpty &&(
-                                <button onClick={saveImage}>Looks Good</button>
-                            )
-                            }
-                        </div>
-        
+                    <h3>Front Side</h3>
                 </Wrapper>
             )}
         </Measure>
